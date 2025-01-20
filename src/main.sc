@@ -55,13 +55,13 @@ theme: /
           varName = servers
           html = 
           htmlEnabled = false
-          then = /FetchRequest
+          then = /newState
           actions = 
               
- state: newState
+  state: newState
         script:
             $temp.response = $http.post(
-                "https://disp.t2.groupstp.ru/app/api/v1/authenticate", 
+                "https://disp.t1.groupstp.ru/app/api/v1/authenticate", 
                 {
                     body: {
                         "username": $session.username,
@@ -81,5 +81,5 @@ theme: /
                     ];
             
               
-            a: Мы подобрали для вас такую экскурсию:\n\n{{$temp.response.data.id_token}} 
+            a: {{$temp.response.data.id_token}} 
             
