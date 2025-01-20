@@ -1,97 +1,688 @@
 {
-    "project": {
-        "id": "zb-faq-cailapub-template_ru",
-        "name": "zb-faq-cailapub-template_ru",
-        "folder": "/platform"
+  "project" : {
+    "id" : "supportbot-1000094848-wzG",
+    "name" : "supportbot-1000094848-wzG",
+    "folder" : "/platform"
+  },
+  "settings" : {
+    "language" : "ru",
+    "spellingCorrection" : false,
+    "classificationAlgorithm" : "sts",
+    "timezone" : "Europe/Moscow",
+    "extendedSettings" : {
+      "classificationAlgorithmVersion" : 1.0,
+      "tokenizerEngine" : "mystem",
+      "useShared" : false
     },
-    "settings": {
-        "language": "ru",
-        "spellingCorrection": false,
-        "classificationAlgorithm": "sts",
-        "validation": {
-            "phraseValidationEnabled": true,
-            "answerValidationEnabled": true,
-            "phraseValidationThreshold": 0.5,
-            "answerValidationThreshold": 0.8
-        },
-        "timezone": "Europe/Moscow",
-        "extendedSettings": {
-            "classificationAlgorithmVersion": 1.0,
-            "tokenizerEngine": "mystem",
-            "useShared": false
-        }
+    "shared" : false,
+    "validation" : {
+      "phraseValidationEnabled" : true,
+      "answerValidationEnabled" : true,
+      "phraseValidationThreshold" : 0.5,
+      "answerValidationThreshold" : 0.8
+    }
+  },
+  "intents" : [ {
+    "path" : "/KnowledgeBase/FAQ.HR/Root/Как получить налоговый вычет?",
+    "enabled" : true,
+    "shared" : false,
+    "phrases" : [ {
+      "text" : "Как получить налоговый вычет?"
+    }, {
+      "text" : "запросить налоговый вычет"
+    }, {
+      "text" : "Как подать на налоговый вычет?"
+    }, {
+      "text" : "оформить возврат НДФЛ"
+    }, {
+      "text" : "вернуть часть уплаченного налога"
+    }, {
+      "text" : "подать заявление на возврат части ндфл"
+    } ],
+    "classificationRules" : {
+      "refs" : [ ]
     },
-    "intents": [
-        {
-            "path": "/пока",
-            "description": null,
-            "answer": null,
-            "customData": null,
-            "enabled": true,
-            "phrases": [
-                {
-                    "text": "пока",
-                    "entities": null
-                }
-            ],
-            "patterns": null,
-            "slots": null
-        },
-        {
-            "path": "/привет",
-            "description": null,
-            "answer": null,
-            "customData": null,
-            "enabled": true,
-            "phrases": [
-                {
-                    "text": "привет",
-                    "entities": null
-                }
-            ],
-            "patterns": null,
-            "slots": null
-        }
-    ],
-    "entities": [],
-    "enabledSystemEntities": [
-        "duckling.number",
-        "duckling.time",
-        "duckling.duration",
-        "duckling.phone-number",
-        "duckling.email",
-        "duckling.url"
-    ],
-    "systemEntities": [
-        {
-            "name": "duckling.number",
-            "version": "v2",
-            "enabled": true
-        },
-        {
-            "name": "duckling.time",
-            "version": "v2",
-            "enabled": true
-        },
-        {
-            "name": "duckling.duration",
-            "version": "v2",
-            "enabled": true
-        },
-        {
-            "name": "duckling.phone-number",
-            "version": "v2",
-            "enabled": true
-        },
-        {
-            "name": "duckling.email",
-            "version": "v2",
-            "enabled": true
-        },
-        {
-            "name": "duckling.url",
-            "version": "v2",
-            "enabled": true
-        }
-    ]
+    "patterns" : [ ],
+    "priority" : 0
+  }, {
+    "path" : "/KnowledgeBase/FAQ.HR/Root/Как заказать справку о доходах?",
+    "enabled" : true,
+    "shared" : false,
+    "phrases" : [ {
+      "text" : "нужна справка 2 ндфл"
+    }, {
+      "text" : "как получить справку 182 н"
+    }, {
+      "text" : "Как заказать справку о доходах?"
+    }, {
+      "text" : "запросить подтверждение дохода"
+    }, {
+      "text" : "получить справку о доходах"
+    }, {
+      "text" : "как сделать справку по форме 2 ндфл"
+    } ],
+    "classificationRules" : {
+      "refs" : [ ]
+    },
+    "patterns" : [ ],
+    "priority" : 0
+  }, {
+    "path" : "/KnowledgeBase/FAQ.HR/Root/Как подать заявление об увольнении?",
+    "enabled" : true,
+    "shared" : false,
+    "phrases" : [ {
+      "text" : "как уволиться по собственному желанию"
+    }, {
+      "text" : "Как подать заявление об увольнении?"
+    }, {
+      "text" : "подать заявление об уходе"
+    }, {
+      "text" : "хочу уволиться"
+    }, {
+      "text" : "Как покинуть должность?"
+    }, {
+      "text" : "я решила покинуть компанию"
+    }, {
+      "text" : "хочу уйти с этой работы"
+    } ],
+    "classificationRules" : {
+      "refs" : [ ]
+    },
+    "patterns" : [ ],
+    "priority" : 0
+  }, {
+    "path" : "/KnowledgeBase/FAQ.HR/Root/Как получить расчетный лист?",
+    "enabled" : true,
+    "shared" : false,
+    "phrases" : [ {
+      "text" : "нужна детализация по зарплате"
+    }, {
+      "text" : "Как получить расчетный лист?"
+    }, {
+      "text" : "Как читать расчетный лист?"
+    }, {
+      "text" : "получить подробную информацию по зп"
+    }, {
+      "text" : "запросить расчетный листок"
+    }, {
+      "text" : "получить информацию по начисленной зарплате"
+    } ],
+    "classificationRules" : {
+      "refs" : [ ]
+    },
+    "patterns" : [ ],
+    "priority" : 0
+  }, {
+    "path" : "/KnowledgeBase/FAQ.HR/Root/Как получить копии трудовых документов?",
+    "enabled" : true,
+    "shared" : false,
+    "phrases" : [ {
+      "text" : "Заказать копию трудовой книжки"
+    }, {
+      "text" : "нужны записи из трудовой книжки"
+    }, {
+      "text" : "Получить копию трудового договора"
+    }, {
+      "text" : "требуют данные из трудовой книжки"
+    }, {
+      "text" : "экземпляр трудового договора"
+    }, {
+      "text" : "Как получить копии трудовых документов?"
+    } ],
+    "classificationRules" : {
+      "refs" : [ ]
+    },
+    "patterns" : [ ],
+    "priority" : 0
+  }, {
+    "path" : "/KnowledgeBase/FAQ.HR/Root/Как оформить матпомощь?",
+    "enabled" : true,
+    "shared" : false,
+    "phrases" : [ {
+      "text" : "Как оформить матпомощь?"
+    }, {
+      "text" : "Как подать на материальную помощь?"
+    }, {
+      "text" : "получить матпомощь"
+    }, {
+      "text" : "подать заявление на социальные выплаты"
+    }, {
+      "text" : "как обратиться за материальной помощью"
+    }, {
+      "text" : "оформить соцвыплату"
+    } ],
+    "classificationRules" : {
+      "refs" : [ ]
+    },
+    "patterns" : [ ],
+    "priority" : 0
+  }, {
+    "path" : "/KnowledgeBase/FAQ.HR/Root/Какие льготы доступны для сотрудников?",
+    "enabled" : true,
+    "shared" : false,
+    "phrases" : [ {
+      "text" : "какие есть льготы?"
+    }, {
+      "text" : "Какие льготы доступны для сотрудников?"
+    }, {
+      "text" : "программы поддержки сотрудников"
+    }, {
+      "text" : "Какие доступны бенефитс?"
+    }, {
+      "text" : "какие есть компенсации"
+    }, {
+      "text" : "за что можно получить возмещение"
+    }, {
+      "text" : "что вы компенсируете"
+    } ],
+    "classificationRules" : {
+      "refs" : [ ]
+    },
+    "patterns" : [ ],
+    "priority" : 0
+  }, {
+    "path" : "/KnowledgeBase/FAQ.HR/Root/Какие есть виды страхования?",
+    "enabled" : true,
+    "shared" : false,
+    "phrases" : [ {
+      "text" : "Есть ли ДМС?"
+    }, {
+      "text" : "есть ли медицинское страхование"
+    }, {
+      "text" : "какие виды страхования доступны"
+    }, {
+      "text" : "какие включены страховки"
+    }, {
+      "text" : "Какие есть виды страхования?"
+    }, {
+      "text" : "какой вид страховки можно выбрать"
+    } ],
+    "classificationRules" : {
+      "refs" : [ ]
+    },
+    "patterns" : [ ],
+    "priority" : 0
+  }, {
+    "path" : "/KnowledgeBase/FAQ.HR/Root/Можно ли работать удаленно?",
+    "enabled" : true,
+    "shared" : false,
+    "phrases" : [ {
+      "text" : "Можно ли работать удаленно?"
+    }, {
+      "text" : "хочу работать дистанционно"
+    }, {
+      "text" : "работать из дома"
+    }, {
+      "text" : "работать в удаленном формате"
+    }, {
+      "text" : "нужно ли ездить в офис?"
+    }, {
+      "text" : "хочу работать на дистанте"
+    } ],
+    "classificationRules" : {
+      "refs" : [ ]
+    },
+    "patterns" : [ ],
+    "priority" : 0
+  }, {
+    "path" : "/KnowledgeBase/FAQ.HR/Root/Как забронировать переговорку?",
+    "enabled" : true,
+    "shared" : false,
+    "phrases" : [ {
+      "text" : "Как забронировать переговорку?"
+    }, {
+      "text" : "зарезервировать переговорную комнату"
+    }, {
+      "text" : "заказать переговорную комнату"
+    }, {
+      "text" : "как занять переговорку?"
+    }, {
+      "text" : "нужно поставить бронь на переговорку"
+    }, {
+      "text" : "хочу забронировать комнату для переговоров"
+    } ],
+    "classificationRules" : {
+      "refs" : [ ]
+    },
+    "patterns" : [ ],
+    "priority" : 0
+  }, {
+    "path" : "/KnowledgeBase/FAQ.HR/Root/Как оформить больничный?",
+    "enabled" : true,
+    "shared" : false,
+    "phrases" : [ {
+      "text" : "условия получения больничного"
+    }, {
+      "text" : "уйти на больничный"
+    }, {
+      "text" : "как получить больничный"
+    }, {
+      "text" : "получить выплаты по больничному"
+    }, {
+      "text" : "как подать больничный лист"
+    }, {
+      "text" : "что делать если я заболела"
+    }, {
+      "text" : "Как оформить больничный?"
+    } ],
+    "classificationRules" : {
+      "refs" : [ ]
+    },
+    "patterns" : [ ],
+    "priority" : 0
+  }, {
+    "path" : "/KnowledgeBase/FAQ.HR/Root/Когда начисляется зарплата?",
+    "enabled" : true,
+    "shared" : false,
+    "phrases" : [ {
+      "text" : "сроки когда начислят зп"
+    }, {
+      "text" : "когда придет жалованье"
+    }, {
+      "text" : "даты выплачивания заработной платы"
+    }, {
+      "text" : "когда начисляют зарплату"
+    }, {
+      "text" : " в какие сроки начисления зп"
+    }, {
+      "text" : "Какого числа приходит зп?"
+    }, {
+      "text" : "когда придет зарплата"
+    }, {
+      "text" : "в какой день выплачивают зарплату"
+    }, {
+      "text" : "когда я получу зарплату?"
+    }, {
+      "text" : "Когда начисляется зарплата?"
+    } ],
+    "classificationRules" : {
+      "refs" : [ ]
+    },
+    "patterns" : [ ],
+    "priority" : 0
+  }, {
+    "path" : "/KnowledgeBase/FAQ.HR/Root/Как получить справку с места работы?",
+    "enabled" : true,
+    "shared" : false,
+    "phrases" : [ {
+      "text" : "нужна справка о месте работы"
+    }, {
+      "text" : "получить подтверждение места работы"
+    }, {
+      "text" : "как запросить справку с места работы"
+    }, {
+      "text" : "Справка о месте трудоустройства"
+    }, {
+      "text" : "документ о том где я работаю"
+    }, {
+      "text" : "где взять свидетельство о трудоустройстве"
+    }, {
+      "text" : "Как получить справку с места работы?"
+    } ],
+    "classificationRules" : {
+      "refs" : [ ]
+    },
+    "patterns" : [ ],
+    "priority" : 0
+  }, {
+    "path" : "/KnowledgeBase/FAQ.HR/Root/Каковы условия испытательного срока?",
+    "enabled" : true,
+    "shared" : false,
+    "phrases" : [ {
+      "text" : "Каковы условия испытательного срока?"
+    }, {
+      "text" : "как пройти испытательный срок?"
+    }, {
+      "text" : "сколько длится испытательный срок"
+    }, {
+      "text" : "можно ли уменьшить длительность испытания при приеме на работу"
+    }, {
+      "text" : "критерии завершения ис"
+    }, {
+      "text" : "обязателен ли испытательный срок"
+    } ],
+    "classificationRules" : {
+      "refs" : [ ]
+    },
+    "patterns" : [ ],
+    "priority" : 0
+  }, {
+    "path" : "/KnowledgeBase/FAQ.HR/Root/Когда начисляется премия?",
+    "enabled" : true,
+    "shared" : false,
+    "phrases" : [ {
+      "text" : "сроки начисления премии"
+    }, {
+      "text" : "в какие сроки зачислят премию"
+    }, {
+      "text" : "когда начислят премиальные"
+    }, {
+      "text" : "какого числа приходит премия"
+    }, {
+      "text" : "когда придет ежегодное поощрение"
+    }, {
+      "text" : "в какую дату выплатят премиальные"
+    }, {
+      "text" : "когда я получу премию?"
+    }, {
+      "text" : "Какая дата выплаты премии?"
+    }, {
+      "text" : "Когда начисляется премия?"
+    } ],
+    "classificationRules" : {
+      "refs" : [ ]
+    },
+    "patterns" : [ ],
+    "priority" : 0
+  }, {
+    "path" : "/KnowledgeBase/FAQ.HR/Root/Как уйти в отпуск?",
+    "enabled" : true,
+    "shared" : false,
+    "phrases" : [ {
+      "text" : "хочу в отпуск"
+    }, {
+      "text" : "нужно оформить отпуск"
+    }, {
+      "text" : "Как уйти в отпуск?"
+    }, {
+      "text" : "как подать заявление на отпуск"
+    }, {
+      "text" : "что делать чтобы получить отпуск?"
+    }, {
+      "text" : "Как подать на отпуск"
+    }, {
+      "text" : "получить отпускные выплаты"
+    }, {
+      "text" : "хочу отдохнуть"
+    } ],
+    "classificationRules" : {
+      "refs" : [ ]
+    },
+    "patterns" : [ ],
+    "priority" : 0
+  }, {
+    "path" : "/KnowledgeBase/FAQ.HR",
+    "enabled" : true,
+    "shared" : false,
+    "classificationRules" : {
+      "refs" : [ ]
+    },
+    "priority" : 0
+  }, {
+    "path" : "/Новый интент",
+    "enabled" : true,
+    "shared" : false,
+    "classificationRules" : {
+      "refs" : [ ]
+    },
+    "priority" : 0
+  }, {
+    "path" : "/password",
+    "enabled" : true,
+    "shared" : false,
+    "phrases" : [ {
+      "text" : "MOdSqw9S"
+    } ],
+    "classificationRules" : {
+      "refs" : [ ]
+    },
+    "patterns" : [ ],
+    "priority" : 0
+  }, {
+    "path" : "/пока",
+    "enabled" : true,
+    "shared" : false,
+    "phrases" : [ {
+      "text" : "пока"
+    } ],
+    "classificationRules" : {
+      "refs" : [ ]
+    },
+    "priority" : 0
+  }, {
+    "path" : "/привет",
+    "enabled" : true,
+    "shared" : false,
+    "phrases" : [ {
+      "text" : "привет"
+    } ],
+    "classificationRules" : {
+      "refs" : [ ]
+    },
+    "priority" : 0
+  }, {
+    "path" : "/getServer",
+    "enabled" : true,
+    "shared" : false,
+    "phrases" : [ ],
+    "classificationRules" : {
+      "refs" : [ ]
+    },
+    "patterns" : [ ],
+    "slots" : [ {
+      "name" : "ServersCitys",
+      "entity" : "ServersCitys",
+      "required" : true,
+      "prompts" : [ "На каком сервере вы хотите авторизироватся ?" ],
+      "array" : false
+    } ],
+    "priority" : 0
+  }, {
+    "path" : "/auth",
+    "enabled" : true,
+    "shared" : false,
+    "phrases" : [ {
+      "text" : "Авторизация"
+    }, {
+      "text" : "Войти"
+    }, {
+      "text" : "Пароль"
+    }, {
+      "text" : "Логин"
+    } ],
+    "classificationRules" : {
+      "refs" : [ ]
+    },
+    "patterns" : [ ],
+    "slots" : [ ],
+    "priority" : 0
+  }, {
+    "path" : "/login",
+    "enabled" : true,
+    "shared" : false,
+    "phrases" : [ {
+      "text" : "sysadmin"
+    }, {
+      "text" : "daniil"
+    }, {
+      "text" : "user"
+    } ],
+    "classificationRules" : {
+      "refs" : [ ]
+    },
+    "patterns" : [ ],
+    "priority" : 0
+  } ],
+  "entities" : [ {
+    "entity" : {
+      "name" : "ServersCitys",
+      "enabled" : true,
+      "shared" : false,
+      "type" : "annotation",
+      "priority" : 1,
+      "noSpelling" : true,
+      "noMorph" : false,
+      "phoneticSearch" : false,
+      "fuzzySearch" : false,
+      "client" : false,
+      "hidden" : false
+    },
+    "records" : [ {
+      "type" : "synonyms",
+      "rule" : [ "https://disp.t1.groupstp.ru/", "disp.t1.groupstp.ru", "t1" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "https://disp.t2.groupstp.ru/", "disp.t2.groupstp.ru", "t2" ],
+      "value" : ""
+    } ]
+  } ],
+  "enabledSystemEntities" : [ "mystem.geo", "mystem.persn", "duckling.number", "duckling.time", "duckling.duration", "duckling.phone-number", "duckling.email", "duckling.url", "zb.datetime" ],
+  "spellerDictionary" : [ ],
+  "systemEntities" : [ {
+    "name" : "mystem.geo",
+    "enabled" : true
+  }, {
+    "name" : "mystem.persn",
+    "enabled" : true
+  }, {
+    "name" : "mystem.obsc",
+    "enabled" : false
+  }, {
+    "name" : "mystem.patrn",
+    "enabled" : false
+  }, {
+    "name" : "mystem.famn",
+    "enabled" : false
+  }, {
+    "name" : "pymorphy.romn",
+    "enabled" : false
+  }, {
+    "name" : "pymorphy.latn",
+    "enabled" : false
+  }, {
+    "name" : "pymorphy.numb",
+    "enabled" : false
+  }, {
+    "name" : "pymorphy.intg",
+    "enabled" : false
+  }, {
+    "name" : "pymorphy.abbr",
+    "enabled" : false
+  }, {
+    "name" : "pymorphy.name",
+    "enabled" : false
+  }, {
+    "name" : "pymorphy.surn",
+    "enabled" : false
+  }, {
+    "name" : "pymorphy.patr",
+    "enabled" : false
+  }, {
+    "name" : "pymorphy.geox",
+    "enabled" : false
+  }, {
+    "name" : "pymorphy.orgn",
+    "enabled" : false
+  }, {
+    "name" : "duckling.number",
+    "version" : "v2",
+    "enabled" : true
+  }, {
+    "name" : "duckling.ordinal",
+    "version" : "v2",
+    "enabled" : false
+  }, {
+    "name" : "duckling.amount-of-money",
+    "version" : "v2",
+    "enabled" : false
+  }, {
+    "name" : "duckling.distance",
+    "version" : "v2",
+    "enabled" : false
+  }, {
+    "name" : "duckling.time",
+    "version" : "v2",
+    "enabled" : true
+  }, {
+    "name" : "duckling.date",
+    "version" : "v2",
+    "enabled" : false
+  }, {
+    "name" : "duckling.time-of-day",
+    "version" : "v2",
+    "enabled" : false
+  }, {
+    "name" : "duckling.duration",
+    "version" : "v2",
+    "enabled" : true
+  }, {
+    "name" : "duckling.phone-number",
+    "version" : "v2",
+    "enabled" : true
+  }, {
+    "name" : "duckling.email",
+    "version" : "v2",
+    "enabled" : true
+  }, {
+    "name" : "duckling.url",
+    "version" : "v2",
+    "enabled" : true
+  }, {
+    "name" : "duckling.interval",
+    "version" : "v2",
+    "enabled" : false
+  }, {
+    "name" : "mlps-obscene.obscene",
+    "enabled" : false
+  }, {
+    "name" : "zb.datetime",
+    "enabled" : true
+  }, {
+    "name" : "zb.number",
+    "enabled" : false
+  } ],
+  "faq" : [ {
+    "intentPath" : "/KnowledgeBase/FAQ.HR/Root/Как получить налоговый вычет?",
+    "replies" : [ ]
+  }, {
+    "intentPath" : "/KnowledgeBase/FAQ.HR/Root/Как заказать справку о доходах?",
+    "replies" : [ ]
+  }, {
+    "intentPath" : "/KnowledgeBase/FAQ.HR/Root/Как подать заявление об увольнении?",
+    "replies" : [ ]
+  }, {
+    "intentPath" : "/KnowledgeBase/FAQ.HR/Root/Как получить расчетный лист?",
+    "replies" : [ ]
+  }, {
+    "intentPath" : "/KnowledgeBase/FAQ.HR/Root/Как получить копии трудовых документов?",
+    "replies" : [ ]
+  }, {
+    "intentPath" : "/KnowledgeBase/FAQ.HR/Root/Как оформить матпомощь?",
+    "replies" : [ ]
+  }, {
+    "intentPath" : "/KnowledgeBase/FAQ.HR/Root/Какие льготы доступны для сотрудников?",
+    "replies" : [ ]
+  }, {
+    "intentPath" : "/KnowledgeBase/FAQ.HR/Root/Какие есть виды страхования?",
+    "replies" : [ ]
+  }, {
+    "intentPath" : "/KnowledgeBase/FAQ.HR/Root/Можно ли работать удаленно?",
+    "replies" : [ ]
+  }, {
+    "intentPath" : "/KnowledgeBase/FAQ.HR/Root/Как забронировать переговорку?",
+    "replies" : [ ]
+  }, {
+    "intentPath" : "/KnowledgeBase/FAQ.HR/Root/Как оформить больничный?",
+    "replies" : [ ]
+  }, {
+    "intentPath" : "/KnowledgeBase/FAQ.HR/Root/Когда начисляется зарплата?",
+    "replies" : [ ]
+  }, {
+    "intentPath" : "/KnowledgeBase/FAQ.HR/Root/Как получить справку с места работы?",
+    "replies" : [ ]
+  }, {
+    "intentPath" : "/KnowledgeBase/FAQ.HR/Root/Каковы условия испытательного срока?",
+    "replies" : [ ]
+  }, {
+    "intentPath" : "/KnowledgeBase/FAQ.HR/Root/Когда начисляется премия?",
+    "replies" : [ ]
+  }, {
+    "intentPath" : "/KnowledgeBase/FAQ.HR/Root/Как уйти в отпуск?",
+    "replies" : [ ]
+  }, {
+    "intentPath" : "/KnowledgeBase/FAQ.HR",
+    "replies" : [ ]
+  } ],
+  "skills" : [ ]
 }

@@ -1,0 +1,80 @@
+{
+  "positions" : [ {
+    "id" : "/Start",
+    "x" : 100,
+    "y" : 733
+  }, {
+    "id" : "/AskLogin",
+    "x" : 578,
+    "y" : 750
+  }, {
+    "id" : "/AskPassword",
+    "x" : 949,
+    "y" : 749
+  }, {
+    "id" : "/AskServer",
+    "x" : 1603,
+    "y" : 712
+  }, {
+    "id" : "/FetchReport",
+    "x" : 290,
+    "y" : 3677
+  }, {
+    "id" : "/GetReportName",
+    "x" : 290,
+    "y" : 4410
+  }, {
+    "id" : "/DownloadReport",
+    "x" : 290,
+    "y" : 5130
+  }, {
+    "id" : "/CatchAll",
+    "x" : 290,
+    "y" : 5623
+  }, {
+    "id" : "/answer",
+    "name" : "answer",
+    "x" : 810,
+    "y" : 3140
+  }, {
+    "id" : "/NewState",
+    "name" : "NewState",
+    "x" : 820,
+    "y" : 3172
+  }, {
+    "id" : "/Answer1",
+    "name" : "Answer1",
+    "x" : 772,
+    "y" : 3166
+  }, {
+    "id" : "/NewState",
+    "name" : "NewState",
+    "x" : 767,
+    "y" : 3174
+  }, {
+    "id" : "/Answer",
+    "name" : "Answer",
+    "x" : 1973,
+    "y" : 631
+  }, {
+    "id" : "/Fail",
+    "name" : "Fail",
+    "x" : 1727,
+    "y" : 1204
+  }, {
+    "id" : "/AskServers",
+    "name" : "AskServers",
+    "x" : 1406,
+    "y" : 488
+  }, {
+    "id" : "/AskServers",
+    "name" : "AskServers",
+    "x" : 1244,
+    "y" : 539
+  }, {
+    "id" : "/AskServers",
+    "name" : "AskServers",
+    "x" : 1283,
+    "y" : 765
+  } ]
+}
