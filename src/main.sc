@@ -3,7 +3,6 @@ theme: /
 
   state: Start
       q!: $regex</start>
-      intent: /login || toState = "/Start"
       intent: /auth || toState = "/AskLogin"
       event: noMatch || toState = "./"
 
@@ -38,13 +37,12 @@ theme: /
       event: noMatch || toState = "./"
 
   state: Answer
-      intent!: /login
-      go: AskPassword
       a: Все отлично
+  state: Fail
+      a: Неудача
 
-   
-    state: AskServers
-     InputText: 
+  state: AskServers
+      InputText: 
           prompt = Введите ваш сервер.
           varName = servers
           html = 
