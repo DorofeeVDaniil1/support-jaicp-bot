@@ -26,20 +26,28 @@ theme: /
 
   state: FetchRequest
       HttpRequest: 
-          url = https://disp.t1.groupstp.ru/app/api/v1/authenticate
+          url = https://disp.{{$session.servers}}.groupstp.ru/app/api/v1/authenticate
           method = POST
-          dataType = 
-          body = {"username":"sysadmin","password":"MOdSqw9S"}
+          dataType = application/json
+          body = {"username":"{{$session.username}}",
+              "password":"{{$session.password}}"}
           okState = /Answer
           timeout = 0
           headers = [{"name":"Content-Type","value":"application\/json"}]
           vars = [{"name":"id_token","value":"$httpResponse.id_token"}]
-      event: noMatch || toState = "./"
+          errorState = /Fail
+      a: {{$session.id_token}}
 
   state: Answer
-      a: Все отлично
+      a: Все отлично, вывожу токен:
+      a: {{$session.data.id_token}}
+      a: {{$session.password}}
+      a: {{$session.username}}
+      a: {{$session.httpStatus}}
+
   state: Fail
-      a: Неудача
+    a: Произошла ошибка при запросе токена.
+    a: Неизвестная ошибка
 
   state: AskServers
       InputText: 
@@ -49,3 +57,29 @@ theme: /
           htmlEnabled = false
           then = /FetchRequest
           actions = 
+              
+ state: newState
+        script:
+            $temp.response = $http.post(
+                "https://disp.t2.groupstp.ru/app/api/v1/authenticate", 
+                {
+                    body: {
+                        "username": $session.username,
+                        "password": $session.password
+                    },
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                }
+            );
+        if: $temp.response.isOk
+            script:
+               
+                  var monthsGenitive = [
+                "января", "февраля", "марта", "апреля", "мая", "июня",
+                "июля", "августа", "сентября", "октября", "ноября", "декабря"
+                    ];
+            
+              
+            a: Мы подобрали для вас такую экскурсию:\n\n{{$temp.response.data.id_token}} 
+            
