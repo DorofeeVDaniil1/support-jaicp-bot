@@ -41,7 +41,8 @@
       "name" : "Reports",
       "entity" : "Reports",
       "required" : true,
-      "prompts" : [ "Укажите отчет уоторый есть в программе", "Возможно указали отчет, которого нет в программе. Уточните отчет" ]
+      "prompts" : [ "Укажите отчет уоторый есть в программе", "Возможно указали отчет, которого нет в программе. Уточните отчет" ],
+      "array" : false
     } ],
     "priority" : 0
   }, {
@@ -61,7 +62,8 @@
       "name" : "Problems",
       "entity" : "RemovalFail",
       "required" : false,
-      "prompts" : [ ]
+      "prompts" : [ ],
+      "array" : false
     } ],
     "priority" : 0
   }, {
