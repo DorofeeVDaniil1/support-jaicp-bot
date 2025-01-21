@@ -2,6 +2,8 @@ require: slotfilling/slotFilling.sc
     module = sys.zb-common
 require: city/city.sc
     module = sys.zb-common
+require: functions.js
+
 
 theme: /
 
@@ -11,10 +13,6 @@ theme: /
           Перед использованием давайте авторизируемся
       go!: /AskLogin
       
-  state: test
-      q!: @RemovalFail
-      a: {{$parseTree._RemovalFail.problem}}
-
   state: AskLogin
       InputText: 
           prompt = Для начала работы мне нужно авторизоваться. Напишите ваш логин.
@@ -69,64 +67,63 @@ theme: /
       intent: /Reason || toState = "/GenerateReport"
       event: noMatch || toState = "./"
 
-  #   state: Example
-  #     intent!: /Reason
-  #     script:
-  #         if ($parseTree._RemovailProblems) {
-  #             $temp.problem = $parseTree._RemovailProblems.problem;
-  #         } else {
-  #             $temp.problem = "Биологические отходы";
-  #         }
-  #     a: Погода в {{$parseTree._City}} на {{$temp.date}}
   state: GenerateReport
       intent!: /Reason
-      a:$session.token_id
       script:
           $session.reportName = $parseTree._ReportName.name;
-          $session.datefrom = $parseTree._Interval.from.value;
-          $session.dateto = $parseTree._Interval.to.value;
-          $session.problemId = $parseTree._Problems.id;
+                $session.datefrom = $parseTree._Interval.from.value;
+                $session.dateto = $parseTree._Interval.to.value;
+                $session.problemId = $parseTree._Problems.id;
       script:
           $temp.resp = $http.post(
-            "https://disp.t1.groupstp.ru/app/api/v1/service/reports/generate", 
-            {
-                body: {
-                "reportName": $session.reportName,
-                "parameters": {
-                    "dateFrom": $session.datefrom,
-                    "dateTo": $session.dateto,
-                    "allContainersNotRemoved": true,
-                    "removalFailByReportFromDriver": true,
-                    "removalFailAreaNotInTask": false,
-                    "removalProblemIds": $session.problemId,
-                    "removalFailDetailsWithoutReport": false
-                },
-                "outputFormat": "json"
-                },
-                headers: {
-            "Content-Type": "application/json",
-            "Authorization": $session.token_id
-                },
-                timeout: 30000
-            }
-                );
-     a:Всё окей
+          "https://disp.t1.groupstp.ru/app/api/v1/service/reports/generate", 
+          {
+              body: {
+              "reportName": $session.reportName,
+              "parameters": {
+          "dateFrom": $session.datefrom,
+          "dateTo": $session.dateto,
+          "allContainersNotRemoved": true,
+          "removalFailByReportFromDriver": true,
+          "removalFailAreaNotInTask": false,
+          "removalProblemIds": $session.problemId,
+          "removalFailDetailsWithoutReport": false
+              },
+              "outputFormat": "json"
+              },
+              headers: {
+          "Content-Type": "application/json",
+          "Authorization": $session.token_id
+              },
+              timeout: 30000
+          }
+              );
+      a: {{$temp.resp.data.title}}
+      script:
+          $session.reportResult = formatReportData($temp.resp.data);
+      a: {{$session.reportResult}}
+      go!: /MainSpace
+
   state: MainSpace
       a: Я бот тех поддержки. Ты можешь попросить меня
-            1) Создать отчеты 
-            2) Проверить информацю 
-            3) Задать вопрос по проекту
-      buttons:
-          "Отчеты" -> /Reports
-          "Проверить информацию"
-          "Задать вопрос по проекту"
+                1) Создать отчеты 
+                2) Проверить информацю 
+                3) Задать вопрос по проекту
+    #   buttons:
+    #       "Отчеты" -> /Reports
+    #       "Задать вопрос по проекту" -> /Ask
 
-  state: Information
-      a: Я бот тех поддержки. Ты можешь попросить меня
-          1) Создать отчеты 
-          2) Проверить информацю 
-          3) Задать вопрос по проекту
+  state: Ask
+      a: Можешь задать мне вопрос по проекту
+      intent: /createReport || toState = "/Report_Anwer"
+      intent: /findProblem || toState = "/Report_Anwer_1"
+      event: noMatch || toState = "./"
+  state: Report_Anwer
+      a: Создать отчет можете в этом боте:
+          Напишите создать ОТЧЕТ с ДАТА по ДАТА для конкретной проблемы. 
+          
       buttons:
-          "Отчеты"
-          "Проверить информацию"
-          "Задать вопрос по проекту"
+          "Создать отчет" -> /Reports
+          "Вернуться назад" -> /MainSpace
+      intent: /Reason || toState = "/GenerateReport"
+      event: noMatch || toState = "./"

@@ -23,6 +23,48 @@
     }
   },
   "intents" : [ {
+    "path" : "/createReport",
+    "enabled" : true,
+    "shared" : false,
+    "phrases" : [ {
+      "text" : "Как создать отчет @Reports"
+    }, {
+      "text" : "Создать отчет @Reports"
+    }, {
+      "text" : "Хочу создать отчет @Reports"
+    } ],
+    "classificationRules" : {
+      "refs" : [ ]
+    },
+    "patterns" : [ ],
+    "slots" : [ {
+      "name" : "Reports",
+      "entity" : "Reports",
+      "required" : true,
+      "prompts" : [ "Укажите отчет уоторый есть в программе", "Возможно указали отчет, которого нет в программе. Уточните отчет" ]
+    } ],
+    "priority" : 0
+  }, {
+    "path" : "/findProblem",
+    "enabled" : true,
+    "shared" : false,
+    "phrases" : [ {
+      "text" : "Какие проблемы бывают?"
+    }, {
+      "text" : "@RemovalFail это проблема?"
+    } ],
+    "classificationRules" : {
+      "refs" : [ ]
+    },
+    "patterns" : [ ],
+    "slots" : [ {
+      "name" : "Problems",
+      "entity" : "RemovalFail",
+      "required" : false,
+      "prompts" : [ ]
+    } ],
+    "priority" : 0
+  }, {
     "path" : "/пока",
     "enabled" : true,
     "shared" : false,
@@ -84,27 +126,6 @@
     },
     "patterns" : [ ],
     "slots" : [ ],
-    "priority" : 0
-  }, {
-    "path" : "/Новый интент",
-    "enabled" : true,
-    "shared" : false,
-    "phrases" : [ ],
-    "classificationRules" : {
-      "refs" : [ ]
-    },
-    "patterns" : [ ],
-    "slots" : [ ],
-    "priority" : 0
-  }, {
-    "path" : "/Отчет",
-    "enabled" : true,
-    "shared" : false,
-    "phrases" : [ ],
-    "classificationRules" : {
-      "refs" : [ ]
-    },
-    "patterns" : [ "Отчет*" ],
     "priority" : 0
   }, {
     "path" : "/Reason",
@@ -172,6 +193,8 @@
       "text" : "Нужен отчет о @Reports с проблемой @RemovalFail за @duckling.interval"
     }, {
       "text" : "Сформируй данные по отчету @Reports за @duckling.time и проблеме @RemovalFail"
+    }, {
+      "text" : "Создай отчет по @Reports с @duckling.interval по @duckling.interval"
     } ],
     "classificationRules" : {
       "refs" : [ {
@@ -189,7 +212,7 @@
     }, {
       "name" : "City",
       "entity" : "mystem.geo",
-      "required" : true,
+      "required" : false,
       "prompts" : [ "В каком районе где?" ],
       "array" : false
     }, {
@@ -202,7 +225,8 @@
       "name" : "ReportName",
       "entity" : "Reports",
       "required" : true,
-      "prompts" : [ "Какой отчет вас интересует?" ]
+      "prompts" : [ "Какой отчет вас интересует?" ],
+      "array" : false
     } ],
     "priority" : 0
   } ],
@@ -222,12 +246,20 @@
     },
     "records" : [ {
       "type" : "synonyms",
-      "rule" : [ "проблемы КП", "Отчет по проблемам КП" ],
+      "rule" : [ "по площадке", "площадке", "отчет по площадке" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "проблемы КП", "Отчет по проблемам КП", "проблемам КП", "проблем КП" ],
       "value" : "{\n  \"name\": \"RemovalProblem\"\n}"
     }, {
       "type" : "synonyms",
-      "rule" : [ "Невывоз", "Отчет по невывозу" ],
+      "rule" : [ "Не вывоз", "не вывозу", "не вывоз", "Проблема вывоза", "вывоз" ],
       "value" : "{\n  \"name\": \"GarbageRemovalFailure\"\n}"
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "по факту", "факт", "отчет по факту" ],
+      "value" : ""
     } ]
   }, {
     "entity" : {
