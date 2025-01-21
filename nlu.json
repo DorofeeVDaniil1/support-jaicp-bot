@@ -409,26 +409,6 @@
     },
     "priority" : 0
   }, {
-    "path" : "/Новый интент",
-    "enabled" : true,
-    "shared" : false,
-    "classificationRules" : {
-      "refs" : [ ]
-    },
-    "priority" : 0
-  }, {
-    "path" : "/password",
-    "enabled" : true,
-    "shared" : false,
-    "phrases" : [ {
-      "text" : "MOdSqw9S"
-    } ],
-    "classificationRules" : {
-      "refs" : [ ]
-    },
-    "patterns" : [ ],
-    "priority" : 0
-  }, {
     "path" : "/пока",
     "enabled" : true,
     "shared" : false,
@@ -444,11 +424,16 @@
     "enabled" : true,
     "shared" : false,
     "phrases" : [ {
+      "text" : "Прив"
+    }, {
+      "text" : "Здравствуйте"
+    }, {
       "text" : "привет"
     } ],
     "classificationRules" : {
       "refs" : [ ]
     },
+    "patterns" : [ ],
     "priority" : 0
   }, {
     "path" : "/getServer",
@@ -487,20 +472,51 @@
     "slots" : [ ],
     "priority" : 0
   }, {
-    "path" : "/login",
+    "path" : "/Новый интент",
     "enabled" : true,
     "shared" : false,
-    "phrases" : [ {
-      "text" : "sysadmin"
-    }, {
-      "text" : "daniil"
-    }, {
-      "text" : "user"
-    } ],
+    "phrases" : [ ],
     "classificationRules" : {
       "refs" : [ ]
     },
     "patterns" : [ ],
+    "slots" : [ ],
+    "priority" : 0
+  }, {
+    "path" : "/Отчет",
+    "enabled" : true,
+    "shared" : false,
+    "phrases" : [ ],
+    "classificationRules" : {
+      "refs" : [ ]
+    },
+    "patterns" : [ "Отчет*" ],
+    "priority" : 0
+  }, {
+    "path" : "/Reason",
+    "enabled" : true,
+    "shared" : false,
+    "phrases" : [ ],
+    "classificationRules" : {
+      "refs" : [ ]
+    },
+    "patterns" : [ ],
+    "slots" : [ {
+      "name" : "RemovailProblems",
+      "entity" : "RemovalFail",
+      "required" : true,
+      "prompts" : [ "Уточните проблему вывоза" ]
+    }, {
+      "name" : "Date",
+      "entity" : "duckling.time",
+      "required" : false,
+      "prompts" : [ "Уточните дату" ]
+    }, {
+      "name" : "City",
+      "entity" : "mystem.geo",
+      "required" : true,
+      "prompts" : [ ]
+    } ],
     "priority" : 0
   } ],
   "entities" : [ {
@@ -525,6 +541,61 @@
       "type" : "synonyms",
       "rule" : [ "https://disp.t2.groupstp.ru/", "disp.t2.groupstp.ru", "t2" ],
       "value" : ""
+    } ]
+  }, {
+    "entity" : {
+      "name" : "RemovalFail",
+      "enabled" : true,
+      "shared" : false,
+      "type" : "annotation",
+      "priority" : 1,
+      "noSpelling" : true,
+      "noMorph" : false,
+      "phoneticSearch" : false,
+      "fuzzySearch" : true,
+      "client" : false,
+      "hidden" : false
+    },
+    "records" : [ {
+      "type" : "synonyms",
+      "rule" : [ "Нет ограждения", "ограждение отсутствует", "нет барьеров" ],
+      "value" : "{\"problem\":\"Нет ограждения\",\"category\":\"Инфраструктура\"}"
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Контейнер неисправен", "поломка контейнера", "сломанный контейнер" ],
+      "value" : "{\"problem\":\"Контейнер неисправен\",\"category\":\"Оборудование\"}"
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Биологические отходы", "медицинские отходы", "биоотходы" ],
+      "value" : "{\"problem\":\"Биологические отходы\",\"category\":\"Нарушение правил\"}"
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "ЖКО в контейнере", "жилищные отходы", "некорректный мусор" ],
+      "value" : "{\"problem\":\"ЖКО в контейнере\",\"category\":\"Нарушение правил\"}"
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Отказ потребителя", "клиент отказался", "потребитель не согласен" ],
+      "value" : "{\"problem\":\"Отказ потребителя\",\"category\":\"Клиент\"}"
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Контейнер отсутствует", "нет контейнера", "контейнер пропал" ],
+      "value" : "{\"problem\":\"Контейнер отсутствует\",\"category\":\"Оборудование\"}"
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Нет подъезда", "снег", "грязь", "гололед", "нечистая дорога", "подъезд заблокирован" ],
+      "value" : "{\"problem\":\"Нет подъезда\",\"category\":\"Инфраструктура\"}"
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Не выкатили контейнер", "контейнер не доставили", "контейнер не подан" ],
+      "value" : "{\"problem\":\"Не выкатили контейнер\",\"category\":\"Клиент\"}"
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Смешанные отходы в РСО", "несортированные отходы", "неразделенный мусор" ],
+      "value" : "{\"problem\":\"Смешанные отходы в РСО\",\"category\":\"Нарушение правил\"}"
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Поломка автомобиля", "авария машины", "неисправность транспорта" ],
+      "value" : "{\"problem\":\"Поломка автомобиля\",\"category\":\"Транспорт\"}"
     } ]
   } ],
   "enabledSystemEntities" : [ "mystem.geo", "mystem.persn", "duckling.number", "duckling.time", "duckling.duration", "duckling.phone-number", "duckling.email", "duckling.url", "zb.datetime" ],

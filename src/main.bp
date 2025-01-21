@@ -9,8 +9,8 @@
     "y" : 750
   }, {
     "id" : "/AskPassword",
-    "x" : 1027,
-    "y" : 704
+    "x" : 986,
+    "y" : 747
   }, {
     "id" : "/AskServer",
     "x" : 1603,
@@ -54,13 +54,13 @@
   }, {
     "id" : "/Answer",
     "name" : "Answer",
-    "x" : 1973,
-    "y" : 631
+    "x" : 2458,
+    "y" : 1236
   }, {
     "id" : "/Fail",
     "name" : "Fail",
-    "x" : 1966,
-    "y" : 984
+    "x" : 2457,
+    "y" : 860
   }, {
     "id" : "/AskServers",
     "name" : "AskServers",
@@ -72,13 +72,13 @@
     "x" : 1244,
     "y" : 539
   }, {
-    "id" : "/AskServers",
-    "name" : "AskServers",
-    "x" : 1312,
-    "y" : 751
+    "id" : "/newState",
+    "x" : 1750,
+    "y" : 622
   }, {
-    "id" : "/FetchRequest",
-    "x" : 1663,
-    "y" : 772
+    "id" : "/Reports",
+    "name" : "Reports",
+    "x" : 547,
+    "y" : 1292
   } ]
 }

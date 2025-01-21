@@ -1,10 +1,19 @@
+require: slotfilling/slotFilling.sc
+    module = sys.zb-common
 
 theme: /
 
   state: Start
       q!: $regex</start>
       intent: /auth || toState = "/AskLogin"
+      intent: /Прив || toState = "./"
+      intent: /Отчет || toState = "/Reports"
       event: noMatch || toState = "./"
+      a: Привет!
+            Я бот тех поддержки проекта Чистая Логистика
+            Можешь задать вопрос который тебя интресует
+      buttons:
+          "Кнопка 1"
 
   state: AskLogin
       InputText: 
@@ -21,65 +30,50 @@ theme: /
           varName = password
           html = 
           htmlEnabled = false
-          then = /AskServers
+          then = /newState
           actions = 
-
-  state: FetchRequest
-      HttpRequest: 
-          url = https://disp.{{$session.servers}}.groupstp.ru/app/api/v1/authenticate
-          method = POST
-          dataType = application/json
-          body = {"username":"{{$session.username}}",
-              "password":"{{$session.password}}"}
-          okState = /Answer
-          timeout = 0
-          headers = [{"name":"Content-Type","value":"application\/json"}]
-          vars = [{"name":"id_token","value":"$httpResponse.id_token"}]
-          errorState = /Fail
-      a: {{$session.id_token}}
 
   state: Answer
       a: Все отлично, вывожу токен:
-      a: {{$session.data.id_token}}
-      a: {{$session.password}}
-      a: {{$session.username}}
-      a: {{$session.httpStatus}}
+      a: {{$session.token_id}}
 
   state: Fail
     a: Произошла ошибка при запросе токена.
     a: Неизвестная ошибка
 
-  state: AskServers
-      InputText: 
-          prompt = Введите ваш сервер.
-          varName = servers
-          html = 
-          htmlEnabled = false
-          then = /newState
-          actions = 
-              
   state: newState
-        script:
-            $temp.response = $http.post(
-                "https://disp.t1.groupstp.ru/app/api/v1/authenticate", 
-                {
-                    body: {
-                        "username": $session.username,
-                        "password": $session.password
-                    },
-                    headers: {
-                        "Content-Type": "application/json"
-                    }
-                }
-            );
-        if: $temp.response.isOk
-            script:
-               
-                  var monthsGenitive = [
-                "января", "февраля", "марта", "апреля", "мая", "июня",
-                "июля", "августа", "сентября", "октября", "ноября", "декабря"
-                    ];
-            
-              
-            a: {{$temp.response.data.id_token}} 
-            
+      script:
+          $temp.response = $http.post(
+          "https://disp.t1.groupstp.ru/app/api/v1/authenticate", 
+          {
+              body: {
+          "username": $session.username,
+          "password": $session.password
+              },
+              headers: {
+          "Content-Type": "application/json"
+              }
+          }
+              );
+      if: $temp.response.isOk
+          script:
+              $session.token_id = $temp.response.data.id_token;
+          go!: /Answer
+      else: 
+          go!: /Fail
+
+  state: Reports
+      a: Выбери отчет, который хочешь создать
+      buttons:
+          "Отчет о невывозе"
+          "Отчет о новых и пренесенных ТС"
+          
+  state: Example
+    intent!: /Reason
+    script:
+        if ($parseTree._RemovailProblems) {
+            $temp.problem = $parseTree._RemovailProblems.problem;
+        } else {
+            $temp.problem = "Биологические отходы";
+        }
+    a: Погода в {{$parseTree._City}} на {{$temp.date}}
