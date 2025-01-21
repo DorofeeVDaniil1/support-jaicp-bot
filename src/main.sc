@@ -1,19 +1,28 @@
 require: slotfilling/slotFilling.sc
     module = sys.zb-common
+require: city/city.sc
+    module = sys.zb-common
 
 theme: /
 
   state: Start
-      q!: $regex</start>
-      intent: /auth || toState = "/AskLogin"
-      intent: /Прив || toState = "./"
-      intent: /Отчет || toState = "/Reports"
-      event: noMatch || toState = "./"
-      a: Привет!
-            Я бот тех поддержки проекта Чистая Логистика
-            Можешь задать вопрос который тебя интресует
-      buttons:
-          "Кнопка 1"
+    q!: $regex</start>
+    a: Здравствуйте! В нашем магазине представлен широкий ассортимент овощей и фруктов. Что вы хотите?
+      #  a: Тип продукта: {{ $parseTree._RemovalFail.type }}
+    #   q!: $regex</start>
+    #   intent: /auth || toState = "/AskLogin"
+    #   intent: /Прив || toState = "./"
+    #   intent: /Reason || toState = "/Example"
+    #   event: noMatch || toState = "./"
+    #   a: Привет!
+    #           Я бот тех поддержки проекта Чистая Логистика
+    #           Можешь задать вопрос который тебя интресует
+    #   buttons:
+    #       "Кнопка 1"
+    
+  state: test
+      q!: @RemovalFail
+      a: {{$parseTree._RemovalFail.problem}}
 
   state: AskLogin
       InputText: 
@@ -65,15 +74,46 @@ theme: /
   state: Reports
       a: Выбери отчет, который хочешь создать
       buttons:
-          "Отчет о невывозе"
+          "Отчет о невывозе" -> /Reports
           "Отчет о новых и пренесенных ТС"
+
+#   state: Example
+#     intent!: /Reason
+#     script:
+#         if ($parseTree._RemovailProblems) {
+#             $temp.problem = $parseTree._RemovailProblems.problem;
+#         } else {
+#             $temp.problem = "Биологические отходы";
+#         }
+#     a: Погода в {{$parseTree._City}} на {{$temp.date}}
+     
+  state: RemovalFailReport
+     intent!: /Reason
+     script:
+          $session.to = $parseTree._Interval.to.value;
+          $session.from = $parseTree._Interval.from.value;
+          $session.region = $parseTree._City;
+          $session.problem = $parseTree._Problems.problem;
           
-  state: Example
-    intent!: /Reason
-    script:
-        if ($parseTree._RemovailProblems) {
-            $temp.problem = $parseTree._RemovailProblems.problem;
-        } else {
-            $temp.problem = "Биологические отходы";
-        }
-    a: Погода в {{$parseTree._City}} на {{$temp.date}}
+          $temp.response = $http.post(
+          "https://disp.t1.groupstp.ru/app/api/v1/reporting/fetchReport?reportName=ProblemWithContainerSummaryReport", 
+          {
+              body: {
+          "dateFrom": $session.username,
+          "dateTo": $session.password,
+          "removalProblemIds": $session.username,
+          "detailsWithCommentFromDriver": "true",
+          "detailsWithNeuralAnalyze":"false"
+          
+              },
+              headers: {
+          "Content-Type": "application/json",
+          "Authorization": $session.token_id
+              }
+          }
+              );
+      if: $temp.response.isOk
+          a: ОТчет о невывозе с {{$parseTree._Interval.to.value}} по {{$parseTree._Interval.from.value}} в городе {{$parseTree._City}} по проблеме {{$parseTree._Problems.problem}}
+          go!: /Answer
+      else: 
+          go!: /Fail
