@@ -10,19 +10,7 @@ theme: /
       a: Здравствуйте! Я бот тех поддержки.
           Перед использованием давайте авторизируемся
       go!: /AskLogin
-
-      #  a: Тип продукта: {{ $parseTree._RemovalFail.type }}
-    #   q!: $regex</start>
-    #   intent: /auth || toState = "/AskLogin"
-    #   intent: /Прив || toState = "./"
-    #   intent: /Reason || toState = "/Example"
-    #   event: noMatch || toState = "./"
-    #   a: Привет!
-    #           Я бот тех поддержки проекта Чистая Логистика
-    #           Можешь задать вопрос который тебя интресует
-    #   buttons:
-    #       "Кнопка 1"
-    
+      
   state: test
       q!: @RemovalFail
       a: {{$parseTree._RemovalFail.problem}}
@@ -48,7 +36,7 @@ theme: /
   state: Answer
       a: Все отлично, вывожу токен:
       a: {{$session.token_id}}
-      go!: /Answer
+      go!: /MainSpace
 
   state: Fail
       a: Произошла ошибка при запросе токена.
@@ -111,5 +99,5 @@ theme: /
           go!: /Answer
       go!: /RemovalFailReport
 
-    state: MainSpace
-        a:Я бот тех поддержки, ты можешь попросить меня:
+  state: MainSpace
+      a:Я бот тех поддержки, ты можешь попросить меня:
