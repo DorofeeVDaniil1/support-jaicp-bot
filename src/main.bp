@@ -78,16 +78,16 @@
   }, {
     "id" : "/Reports",
     "name" : "Reports",
-    "x" : 469,
-    "y" : 1449
+    "x" : 2638,
+    "y" : 532
   }, {
     "id" : "/Example",
     "x" : 906,
     "y" : 1294
   }, {
     "id" : "/RemovalFailReport",
-    "x" : 2441,
-    "y" : 1600
+    "x" : 3089,
+    "y" : 446
   }, {
     "id" : "/test",
     "x" : -438,
@@ -95,7 +95,11 @@
   }, {
     "id" : "/MainSpace",
     "name" : "MainSpace",
-    "x" : 2191,
-    "y" : 801
+    "x" : 2119,
+    "y" : 683
+  }, {
+    "id" : "/Information",
+    "x" : 2532,
+    "y" : 1071
   } ]
 }

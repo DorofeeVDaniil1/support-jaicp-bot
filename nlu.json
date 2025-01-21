@@ -143,35 +143,35 @@
     }, {
       "text" : "@RemovalFail обнаружена в @mystem.geo, дата: @duckling.interval"
     }, {
-      "text" : "Создай отчет по Невывозу за @duckling.intervalпо проблеме @RemovalFail"
+      "text" : "Создай отчет по @Reports за @duckling.intervalпо проблеме @RemovalFail"
     }, {
-      "text" : "Сделай отчет по проблеме @RemovalFail за @duckling.interval"
+      "text" : "Сделай отчет по @Reports @RemovalFail за @duckling.interval"
     }, {
-      "text" : "Нужен отчет по Невывозу за @duckling.intervalс проблемой @RemovalFail"
+      "text" : "Нужен отчет по @Reports за @duckling.intervalс проблемой @RemovalFail"
     }, {
       "text" : "Сформируй отчет по @RemovalFail за @duckling.interval"
     }, {
       "text" : "Сделай отчет за @duckling.intervalпо проблеме @RemovalFail"
     }, {
-      "text" : "Отчет по Невывозу за @duckling.intervalс указанием проблемы @RemovalFail"
+      "text" : "Отчет по @Reports за @duckling.intervalс указанием проблемы @RemovalFail"
     }, {
       "text" : "Подготовь отчет за @duckling.time по @RemovalFail"
     }, {
-      "text" : "Создай отчет по проблеме @RemovalFail за период @duckling.interval"
+      "text" : "Создай отчет по @Reports @RemovalFail за период @duckling.interval"
     }, {
-      "text" : "Сформируй отчет по Невывозу за @duckling.intervalпо @RemovalFail"
+      "text" : "Сформируй отчет по @Reports за @duckling.intervalпо @RemovalFail"
     }, {
       "text" : "Нужен отчет за @duckling.interval, проблема: @RemovalFail"
     }, {
       "text" : "Сделай отчет по @RemovalFail за время @duckling.interval"
     }, {
-      "text" : "Подготовь данные за @duckling.intervalпо Невывозу с проблемой @RemovalFail"
+      "text" : "Подготовь данные за @duckling.interval по @Reportsс проблемой @RemovalFail"
     }, {
-      "text" : "Создай отчет по проблеме @RemovalFail на дату @duckling.interval"
+      "text" : "Создай отчет по @Reports @RemovalFail на дату @duckling.interval"
     }, {
-      "text" : "Нужен отчет о Невывозе с проблемой @RemovalFail за @duckling.interval"
+      "text" : "Нужен отчет о @Reports с проблемой @RemovalFail за @duckling.interval"
     }, {
-      "text" : "Сформируй данные по Невывозу за @duckling.time и проблеме @RemovalFail"
+      "text" : "Сформируй данные по отчету @Reports за @duckling.time и проблеме @RemovalFail"
     } ],
     "classificationRules" : {
       "refs" : [ {
@@ -198,10 +198,38 @@
       "required" : true,
       "prompts" : [ "За какое время?" ],
       "array" : false
+    }, {
+      "name" : "ReportName",
+      "entity" : "Reports",
+      "required" : true,
+      "prompts" : [ "Какой отчет вас интересует?" ]
     } ],
     "priority" : 0
   } ],
   "entities" : [ {
+    "entity" : {
+      "name" : "Reports",
+      "enabled" : true,
+      "shared" : false,
+      "type" : "annotation",
+      "priority" : 1,
+      "noSpelling" : false,
+      "noMorph" : false,
+      "phoneticSearch" : false,
+      "fuzzySearch" : false,
+      "client" : false,
+      "hidden" : false
+    },
+    "records" : [ {
+      "type" : "synonyms",
+      "rule" : [ "проблемы КП", "Отчет по проблемам КП" ],
+      "value" : "{\n  \"name\": \"RemovalProblem\"\n}"
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Невывоз", "Отчет по невывозу" ],
+      "value" : "{\n  \"name\": \"GarbageRemovalFailure\"\n}"
+    } ]
+  }, {
     "entity" : {
       "name" : "ServersCitys",
       "enabled" : true,
@@ -241,43 +269,43 @@
     "records" : [ {
       "type" : "synonyms",
       "rule" : [ "Нет ограждения", "ограждение отсутствует", "нет барьеров" ],
-      "value" : "{\"problem\":\"Нет ограждения\",\"category\":\"Инфраструктура\"}"
+      "value" : "{\n  \"problem\": \"Нет ограждения\",\n  \"category\": \"Инфраструктура\",\n  \"id\": \"d2e7d5f9-e529-4a48-ba79-b18e208af5f0\"\n}"
     }, {
       "type" : "synonyms",
       "rule" : [ "Контейнер неисправен", "поломка контейнера", "сломанный контейнер" ],
-      "value" : "{\"problem\":\"Контейнер неисправен\",\"category\":\"Оборудование\"}"
+      "value" : "{\n  \"problem\": \"Контейнер неисправен\",\n  \"category\": \"Оборудование\",\n  \"id\": \"20cfe8d2-7323-4719-ab71-df7d4e1dba44\"\n}"
     }, {
       "type" : "synonyms",
       "rule" : [ "Биологические отходы", "медицинские отходы", "биоотходы" ],
-      "value" : "{\"problem\":\"Биологические отходы\",\"category\":\"Нарушение правил\"}"
+      "value" : "{\n  \"problem\": \"Биологические отходы\",\n  \"category\": \"Нарушение правил\",\n  \"id\": \"72c9cffe-add7-4fb1-bd6c-5ba90ae3b6d8\"\n}"
     }, {
       "type" : "synonyms",
       "rule" : [ "ЖКО в контейнере", "жилищные отходы", "некорректный мусор" ],
-      "value" : "{\"problem\":\"ЖКО в контейнере\",\"category\":\"Нарушение правил\"}"
+      "value" : "{\n  \"problem\": \"ЖКО в контейнере\",\n  \"category\": \"Нарушение правил\",\n  \"id\": \"e59bf164-be9f-493c-96ae-267017aeced0\"\n}"
     }, {
       "type" : "synonyms",
       "rule" : [ "Отказ потребителя", "клиент отказался", "потребитель не согласен" ],
-      "value" : "{\"problem\":\"Отказ потребителя\",\"category\":\"Клиент\"}"
+      "value" : "{\n  \"problem\": \"Отказ потребителя\",\n  \"category\": \"Клиент\",\n  \"id\": \"a84ee3ec-0e1f-4e00-b5bf-fbe313fd10a6\"\n}"
     }, {
       "type" : "synonyms",
       "rule" : [ "Контейнер отсутствует", "нет контейнера", "контейнер пропал" ],
-      "value" : "{\"problem\":\"Контейнер отсутствует\",\"category\":\"Оборудование\"}"
+      "value" : "{\n  \"problem\": \"Контейнер отсутствует\",\n  \"category\": \"Оборудование\",\n  \"id\": \"bcb4977d-3e78-4307-ae98-474863002511\"\n}"
     }, {
       "type" : "synonyms",
       "rule" : [ "Нет подъезда", "снег", "грязь", "гололед", "нечистая дорога", "подъезд заблокирован" ],
-      "value" : "{\"problem\":\"Нет подъезда\",\"category\":\"Инфраструктура\"}"
+      "value" : "{\n  \"problem\": \"Нет подъезда\",\n  \"category\": \"Инфраструктура\",\n  \"id\": \"7244541e-e7a7-4df1-bc44-c829aae0e6a7\"\n}"
     }, {
       "type" : "synonyms",
       "rule" : [ "Не выкатили контейнер", "контейнер не доставили", "контейнер не подан" ],
-      "value" : "{\"problem\":\"Не выкатили контейнер\",\"category\":\"Клиент\"}"
+      "value" : "{\n  \"problem\": \"Не выкатили контейнер\",\n  \"category\": \"Клиент\",\n  \"id\": \"fbee3f31-0e48-4c64-9338-52e1b0f27abd\"\n}"
     }, {
       "type" : "synonyms",
       "rule" : [ "Смешанные в РСО", "несортированные ", "неразделенный мусор" ],
-      "value" : "{\"problem\":\"Смешанные отходы в РСО\",\"category\":\"Нарушение правил\"}"
+      "value" : "{\n  \"problem\": \"Смешанные отходы в РСО\",\n  \"category\": \"Нарушение правил\",\n  \"id\": \"8bb2893f-233a-483b-9d07-1dde3105414f\"\n}"
     }, {
       "type" : "synonyms",
       "rule" : [ "Поломка автомобиля", "авария машины", "неисправность транспорта" ],
-      "value" : "{\"problem\":\"Поломка автомобиля\",\"category\":\"Транспорт\"}"
+      "value" : "{\n  \"problem\": \"Поломка автомобиля\",\n  \"category\": \"Транспорт\",\n  \"id\": \"ddc12e6f-3eda-4b39-a930-d56051ca95de\"\n}"
     } ]
   } ],
   "enabledSystemEntities" : [ "mystem.geo", "mystem.persn", "duckling.number", "duckling.time", "duckling.duration", "duckling.phone-number", "duckling.email", "duckling.url", "duckling.interval", "zb.datetime" ],
