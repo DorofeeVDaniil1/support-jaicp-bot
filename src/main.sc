@@ -107,14 +107,10 @@ theme: /
             "Content-Type": "application/json",
             "Authorization": $session.token_id
                 },
-                timeout: 3000
+                timeout: 30000
             }
                 );
-      script:
-        if($temp.resp.isOk){
-            $temp.resp.data.title
-        }
-        a:$temp.resp.data.title
+     a:Всё окей
   state: MainSpace
       a: Я бот тех поддержки. Ты можешь попросить меня
             1) Создать отчеты 
