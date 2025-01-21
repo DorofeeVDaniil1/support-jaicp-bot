@@ -54,13 +54,13 @@
   }, {
     "id" : "/Answer",
     "name" : "Answer",
-    "x" : 2458,
-    "y" : 1236
+    "x" : 1694,
+    "y" : 700
   }, {
     "id" : "/Fail",
     "name" : "Fail",
-    "x" : 2457,
-    "y" : 860
+    "x" : 1722,
+    "y" : 1170
   }, {
     "id" : "/AskServers",
     "name" : "AskServers",
@@ -73,8 +73,8 @@
     "y" : 539
   }, {
     "id" : "/newState",
-    "x" : 1750,
-    "y" : 622
+    "x" : 1361,
+    "y" : 602
   }, {
     "id" : "/Reports",
     "name" : "Reports",
@@ -84,5 +84,18 @@
     "id" : "/Example",
     "x" : 906,
     "y" : 1294
+  }, {
+    "id" : "/RemovalFailReport",
+    "x" : 2441,
+    "y" : 1600
+  }, {
+    "id" : "/test",
+    "x" : -269,
+    "y" : 133
+  }, {
+    "id" : "/MainSpace",
+    "name" : "MainSpace",
+    "x" : 2191,
+    "y" : 801
   } ]
 }

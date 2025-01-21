@@ -6,8 +6,11 @@ require: city/city.sc
 theme: /
 
   state: Start
-    q!: $regex</start>
-    a: Здравствуйте! В нашем магазине представлен широкий ассортимент овощей и фруктов. Что вы хотите?
+      q!: $regex</start>
+      a: Здравствуйте! Я бот тех поддержки.
+          Перед использованием давайте авторизируемся
+      go!: /AskLogin
+
       #  a: Тип продукта: {{ $parseTree._RemovalFail.type }}
     #   q!: $regex</start>
     #   intent: /auth || toState = "/AskLogin"
@@ -45,10 +48,12 @@ theme: /
   state: Answer
       a: Все отлично, вывожу токен:
       a: {{$session.token_id}}
+      go!: /Answer
 
   state: Fail
-    a: Произошла ошибка при запросе токена.
-    a: Неизвестная ошибка
+      a: Произошла ошибка при запросе токена.
+      a: Неизвестная ошибка
+      go!: /AskLogin
 
   state: newState
       script:
@@ -77,43 +82,34 @@ theme: /
           "Отчет о невывозе" -> /Reports
           "Отчет о новых и пренесенных ТС"
 
-#   state: Example
-#     intent!: /Reason
-#     script:
-#         if ($parseTree._RemovailProblems) {
-#             $temp.problem = $parseTree._RemovailProblems.problem;
-#         } else {
-#             $temp.problem = "Биологические отходы";
-#         }
-#     a: Погода в {{$parseTree._City}} на {{$temp.date}}
-     
+  #   state: Example
+  #     intent!: /Reason
+  #     script:
+  #         if ($parseTree._RemovailProblems) {
+  #             $temp.problem = $parseTree._RemovailProblems.problem;
+  #         } else {
+  #             $temp.problem = "Биологические отходы";
+  #         }
+  #     a: Погода в {{$parseTree._City}} на {{$temp.date}}
   state: RemovalFailReport
-     intent!: /Reason
-     script:
-          $session.to = $parseTree._Interval.to.value;
-          $session.from = $parseTree._Interval.from.value;
-          $session.region = $parseTree._City;
-          $session.problem = $parseTree._Problems.problem;
-          
+      intent!: /Reason
+      script:
           $temp.response = $http.post(
-          "https://disp.t1.groupstp.ru/app/api/v1/reporting/fetchReport?reportName=ProblemWithContainerSummaryReport", 
-          {
-              body: {
-          "dateFrom": $session.username,
-          "dateTo": $session.password,
-          "removalProblemIds": $session.username,
-          "detailsWithCommentFromDriver": "true",
-          "detailsWithNeuralAnalyze":"false"
-          
-              },
-              headers: {
-          "Content-Type": "application/json",
-          "Authorization": $session.token_id
-              }
-          }
-              );
-      if: $temp.response.isOk
-          a: ОТчет о невывозе с {{$parseTree._Interval.to.value}} по {{$parseTree._Interval.from.value}} в городе {{$parseTree._City}} по проблеме {{$parseTree._Problems.problem}}
+            "https://disp.t1.groupstp.ru/app/api/v1/authenticate", 
+            {
+                body: {
+            "username": $session.username,
+            "password": $session.password
+                },
+                headers: {
+            "Content-Type": "application/json"
+                }
+            }
+                );
+          script:
+                $session.token_id = $temp.response.data.id_token;
           go!: /Answer
-      else: 
-          go!: /Fail
+      go!: /RemovalFailReport
+
+    state: MainSpace
+        a:Я бот тех поддержки, ты можешь попросить меня:

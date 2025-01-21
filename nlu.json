@@ -190,12 +190,14 @@
       "name" : "City",
       "entity" : "mystem.geo",
       "required" : true,
-      "prompts" : [ "В каком районе где?" ]
+      "prompts" : [ "В каком районе где?" ],
+      "array" : false
     }, {
       "name" : "Interval",
       "entity" : "duckling.interval",
       "required" : true,
-      "prompts" : [ "За какое время?" ]
+      "prompts" : [ "За какое время?" ],
+      "array" : false
     } ],
     "priority" : 0
   } ],
